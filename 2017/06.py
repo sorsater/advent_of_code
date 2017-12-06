@@ -1,5 +1,5 @@
-Answer #1: 11137
-Answer #2: 1037
+# Answer #1: 11137
+# Answer #2: 1037
 
 with open('input/06') as f:
     regs = [int(a) for a in f.read().split('\t')]
@@ -16,9 +16,10 @@ while True:
         regs[best_idx%len(regs)] += 1
 
     if str(regs) in seen:
-        print('Answer #1: {}'.format(len(seen)))
-        print('Answer #2: {}'.format(cntr - seen[str(regs)]))
         break
 
     seen[(str(regs))] = cntr
     cntr += 1
+
+print('Answer #1: {}'.format(len(seen)))
+print('Answer #2: {}'.format(cntr - seen[str(regs)]))
