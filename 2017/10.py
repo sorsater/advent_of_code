@@ -7,7 +7,6 @@ with open('input/10') as f:
     raw = f.read()
 
 lengths_1 = [int(hej) for hej in raw.split(',')]
-lengths_2 = [ord(char) for char in raw] + [17, 31, 73, 47, 23]
 
 string = list(range(len_list))
 
@@ -29,7 +28,7 @@ def hash_me(string, lengths, iter):
             else:
                 part1 = string[start_idx:]
                 part2 = string[:end_idx]
-                
+
                 sub_string = (part1 + part2)[::-1]
 
                 string[start_idx:] = sub_string[:len(part1)]
@@ -39,22 +38,31 @@ def hash_me(string, lengths, iter):
             skip += 1
     return string
 
-seq1 = hash_me(string[:], lengths_1, 1)
-print('Answer #1: {}'.format(seq1[0]* seq1[1]))
 
-sparse_hash = hash_me(string[:], lengths_2, 64)
+def knot_hash(chars, hex_format=True):
+    lengths_2 = [ord(ch) for ch in chars] + [17, 31, 73, 47, 23]
 
-# For each block of 16 numbers
-dense_hash = []
-for i in range(0, len(sparse_hash), 16):
-    res = 0
-    for num in sparse_hash[i:i+16]:
-        res ^= num
-    dense_hash.append(res)
+    sparse_hash = hash_me(string[:], lengths_2, 64)
 
-res = ''
-for dense in dense_hash:
-    res += format(dense, '02x')
+    # For each block of 16 numbers
+    dense_hash = []
+    for i in range(0, len(sparse_hash), 16):
+        res = 0
+        for num in sparse_hash[i:i+16]:
+            res ^= num
+        dense_hash.append(res)
 
-print('Answer #2: {}'.format(res))
+    res = ''
+    for dense in dense_hash:
+        if hex_format:
+            res += format(dense, '02x')
+        else:
+            res += format(dense, '08b')
+    return res
+
+if __name__ == '__main__':
+    seq1 = hash_me(string[:], lengths_1, 1)
+    print('Answer #1: {}'.format(seq1[0]* seq1[1]))
+    res = knot_hash(raw)
+    print('Answer #2: {}'.format(res))
 
