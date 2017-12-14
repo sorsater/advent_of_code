@@ -7,21 +7,18 @@ with open('input/13') as f:
         key, val = line.strip().split(':')
         firewalls[int(key)] = [int(val), int(val)*2-2]
 
-def delay(delay=0, part2=False):
-    caught = 0
-    for layer in firewalls.keys():
-        if (layer + delay) % firewalls[layer][1] == 0:
-            if part2:
-                return False
-            caught += layer * firewalls[layer][0]
+def delay(delay=0):
+    for layer, length in firewalls.items():
+        if (layer + delay) % length[1] == 0:
+            yield layer * length[0]
 
-    return True if part2 else caught
-
-print('Answer #1: {}'.format(delay()))
+print('Answer #1: {}'.format(sum([x for x in delay()])))
 
 cntr = 0
 while True:
-    if delay(cntr, True):
+    try:
+        next(delay(cntr))
+    except StopIteration:
         break
     cntr += 1
 print('Answer #2: {}'.format(cntr))
