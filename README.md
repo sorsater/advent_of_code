@@ -1,12 +1,18 @@
 # Advent of Code
 One repo for all years  
-Written in python
+Written in python and jupyter notebooks
+
+## 2019
+Day 1-8, 12 completed
+
+## 2018
+Day 1, 2 completed
 
 ## 2017
-![Progress](http://progressed.io/bar/68)
+Day 1-20 completed
 
 ## 2016
-![Progress](http://progressed.io/bar/100)
+Fully completed
 
 ## 2015
-![Progress](http://progressed.io/bar/100)
+Fully completed
