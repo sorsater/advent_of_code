@@ -1,39 +1,41 @@
-import re
-from collections import defaultdict
+data = open("02.input").read().splitlines()
 
-data = open("02.input").read()
+score_map = {
+    "A X": 3 + 1,
+    "A Y": 6 + 2,
+    "A Z": 0 + 3, 
+    "B X": 0 + 1, 
+    "B Y": 3 + 2, 
+    "B Z": 6 + 3, 
+    "C X": 6 + 1, 
+    "C Y": 0 + 2,
+    "C Z": 3 + 3,
+}
 
-raw_crates, raw_instructions = data.split("\n\n")
+pick_move_map = {
+    "Y": { # draw
+        "A": "X",
+        "B": "Y",
+        "C": "Z",
+    },
+    "Z": { # win
+        "A": "Y",
+        "B": "Z",
+        "C": "X",
+    },
+    "X": { # lose
+        "A": "Z",
+        "B": "X",
+        "C": "Y",
+    }
+}
 
-crates = defaultdict(list)
-crate_pattern = r"\[\w\]"
-for line in raw_crates.splitlines()[::-1][1:]:
-    for match in re.finditer(crate_pattern, line):
-        crates[match.regs[0][0] // 4 + 1].append(match.group().replace("[", "").replace("]", ""))
+part1 = sum(list(map(lambda x: score_map[x], data)))
+print(part1)
 
-instr_re = r".*(\d+).*(\d+).*(\d+)"
+def part2_one(line):
+    my_move = pick_move_map[line[2]][line[0]]
+    return score_map[f"{line[0]} {my_move}"]
 
-instructions = []
-for instr in raw_instructions.splitlines():
-    match = re.match(instr_re, instr)
-    num, from_, to = list(map(int, match.groups()))
-    instructions.append([num, from_, to])
-
-for instr in instructions:
-    num, from_, to = instr
-    pickup = crates[from_][-num:][::-1]
-    x = 1
-    crates[from_] = crates[from_][:-num]
-    crates[to].extend(pickup)
-    d = 1
-
-print(crates)
-
-for key in sorted(crates.keys()):
-    # print(key)
-    try:
-        print(crates[key][-1])
-    except:
-        print()
-
-
+part2 = sum(list(map(lambda x: part2_one(x), data)))
+print(part2)
