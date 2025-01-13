@@ -13,7 +13,7 @@ def set_regs(a, b, c, d):
 	reg['d'] = d
 
 def main():
-	print("Answer: ", reg['a'], end="\r")
+	print("Answer #1: ", reg['a'], end="\r")
 	cur_idx = False
 	i = 0
 	while i < len(cmds):
