@@ -2,7 +2,10 @@
 One repo for all years  
 Written in python and jupyter notebooks
 
-Total stars: 408
+Total stars: 410
+
+## 2025: 2 stars
+Day 1: :star2:  
 
 ## 2024: 50 stars
 All done
