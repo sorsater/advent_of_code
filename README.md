@@ -2,7 +2,7 @@
 One repo for all years  
 Written in python and jupyter notebooks
 
-Total stars: 434
+Total stars: 436
 
 ## 2025: 24 stars
 All done
@@ -90,7 +90,7 @@ Day 12: :star2:
 Day 16: :star2:  
 Day 24: :star:  
 
-## 2018: 26 stars
+## 2018: 28 stars
 Day 1: :star2:  
 Day 2: :star2:  
 Day 3: :star2:  
@@ -99,6 +99,7 @@ Day 5: :star2:
 Day 6: :star2:  
 Day 7: :star:  
 Day 8: :star2:  
+Day 9: :star2:  
 Day 10: :star2:  
 Day 11: :star2:  
 Day 12: :star2:  
